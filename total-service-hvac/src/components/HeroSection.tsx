@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, Star, Shield, Home, Zap, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -24,42 +25,39 @@ const trustItems = [
 export default function HeroSection() {
   return (
     <section
-      className="hero-gradient relative flex items-center min-h-screen"
+      className="relative flex items-center min-h-screen"
       aria-labelledby="hero-heading"
     >
-      {/* Noise grain overlay */}
+      {/* Background photo */}
+      <Image
+        src="/hvac_technician.png"
+        alt="HVAC technician servicing an air conditioning unit"
+        fill
+        priority
+        style={{ objectFit: "cover", objectPosition: "center" }}
+      />
+
+      {/* Navy blue overlay */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E")`,
-          opacity: 0.04,
+          background: "linear-gradient(105deg, rgba(10,37,64,0.88) 0%, rgba(10,37,64,0.75) 50%, rgba(13,27,42,0.65) 100%)",
           zIndex: 1,
         }}
         aria-hidden="true"
       />
 
-      {/* Geometric accent shapes */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-        <div
-          className="absolute -top-32 -right-32 w-96 h-96 rounded-full opacity-10"
-          style={{ background: "radial-gradient(circle, var(--color-accent) 0%, transparent 70%)" }}
-        />
-        <div
-          className="absolute bottom-0 left-0 w-72 h-72 opacity-5"
-          style={{ background: "radial-gradient(circle, #4A90D9 0%, transparent 70%)" }}
-        />
-        {/* Diagonal lines pattern */}
-        <svg className="absolute inset-0 w-full h-full opacity-5" preserveAspectRatio="none">
-          <defs>
-            <pattern id="diag" patternUnits="userSpaceOnUse" width="30" height="30" patternTransform="rotate(45)">
-              <line x1="0" y1="0" x2="0" y2="30" stroke="white" strokeWidth="0.5" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#diag)" />
-        </svg>
-      </div>
+      {/* Subtle orange accent glow */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "radial-gradient(ellipse at 80% 50%, rgba(232,98,26,0.12) 0%, transparent 60%)",
+          zIndex: 2,
+        }}
+        aria-hidden="true"
+      />
 
-      <div className="container-custom relative z-10 py-24 md:py-32">
+      <div className="container-custom py-24 md:py-32" style={{ position: "relative", zIndex: 10 }}>
         <motion.div
           variants={container}
           initial="hidden"
@@ -133,7 +131,7 @@ export default function HeroSection() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 scroll-indicator" aria-hidden="true">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator" style={{ zIndex: 10 }} aria-hidden="true">
         <ChevronDown size={28} color="rgba(255,255,255,0.5)" />
       </div>
     </section>
