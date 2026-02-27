@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { Phone, Star, Shield, Home, Zap, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -27,16 +26,13 @@ export default function HeroSection() {
     <section
       className="relative flex items-center min-h-screen"
       aria-labelledby="hero-heading"
+      style={{
+        backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH || ""}/hvac_technician.png)`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
     >
-      {/* Background photo */}
-      <Image
-        src="/hvac_technician.png"
-        alt="HVAC technician servicing an air conditioning unit"
-        fill
-        priority
-        style={{ objectFit: "cover", objectPosition: "center" }}
-      />
-
       {/* Navy blue overlay */}
       <div
         className="absolute inset-0"
